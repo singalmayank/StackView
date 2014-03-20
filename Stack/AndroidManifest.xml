@@ -1,0 +1,21 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.stack">
+    
+    <uses-sdk android:targetSdkVersion="14" android:minSdkVersion="11"/>
+    
+    <application android:label="StackWidget">
+        
+        <receiver android:name=".StackWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_ENABLED"/> 
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/stackwidgetinfo" />
+        </receiver>
+
+        <service android:name=".StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"
+            android:exported="false" />
+    </application>
+</manifest>
