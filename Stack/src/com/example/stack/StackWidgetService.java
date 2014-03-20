@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
+import android.widget.StackView;
 import android.widget.Toast;
 
 public class StackWidgetService extends RemoteViewsService {
@@ -20,7 +21,7 @@ public class StackWidgetService extends RemoteViewsService {
 
 class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     private static final int mCount = 3;
-    private List<WidgetItem> mWidgetItems = new ArrayList<WidgetItem>();
+    private ArrayList<WidgetItem> mWidgetItems = new ArrayList<WidgetItem>();
     private Context mContext;
     private int mAppWidgetId;
 
@@ -46,6 +47,10 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        StackAdapter adapt = new StackAdapter(mContext, R.id.widget_item, mWidgetItems);
+        
+        StackView stk = new StackView(mContext);
+        stk.setAdapter(adapt);
     }
 
     public void onDestroy() {
